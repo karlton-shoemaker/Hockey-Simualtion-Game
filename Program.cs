@@ -17,6 +17,7 @@ namespace Choose_Your_Class
             List<Player> blueJacketsRoster = new List<Player>();
             player.BlueJacketsRoster(blueJacketsRoster);
             player.StatDisplay(blueJacketsRoster[0]);
+            player.StatDisplay(blueJacketsRoster[8]);
         }
     }
 }
