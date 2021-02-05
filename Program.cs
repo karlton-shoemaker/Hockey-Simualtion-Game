@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Choose_Your_Class
 {
@@ -11,6 +12,11 @@ namespace Choose_Your_Class
             Console.WriteLine("2. Defend a shot");
             Console.WriteLine("3. Start a fight");
             Console.WriteLine("4. Serve your time in the penalty box");
+
+            Player player = new Player();
+            List<Player> blueJacketsRoster = new List<Player>();
+            player.BlueJacketsRoster(blueJacketsRoster);
+            player.StatDisplay(blueJacketsRoster[0]);
         }
     }
 }
