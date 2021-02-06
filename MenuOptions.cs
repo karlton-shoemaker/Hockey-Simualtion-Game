@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Choose_Your_Class
 {
-    public class PlayOutcome
+    public class MenuOptions
     {
 
         public void ShotOptions(Player player)
@@ -111,6 +111,132 @@ namespace Choose_Your_Class
                         break;
                 }
             }
+        }
+        public void FightOptions(Player player)
+        {
+
+        }
+        public Player ShooterOptions(Player player, List<Player> players)
+        {
+            int number = 0;
+            int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
+
+            foreach (Player index in players)
+            {
+                if (players[number].Position != "GK")
+                {
+                    filteredPlayers.Add(players[number]);
+
+                    if (displayNumber < 10)
+                    {
+                        Console.Write($" {displayNumber}. ");
+                        displayNumber++;
+                    }
+                    else
+                    {
+                        Console.Write($"{displayNumber}. ");
+                        displayNumber++;
+                    }
+                    player.StatDisplay(index);
+                }
+                number++;
+            }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return filteredPlayers[playerChoice];
+        }
+        public Player DefenseOptions(Player player, List<Player> players)
+        {
+            int number = 0;
+            int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
+
+            foreach (Player index in players)
+            {
+                if (players[number].Position == "GK" || players[number].Position == "DE")
+                {
+                    filteredPlayers.Add(players[number]);
+
+                    if (displayNumber < 10)
+                    {
+                        Console.Write($" {displayNumber}. ");
+                        displayNumber++;
+                    }
+                    else
+                    {
+                        Console.Write($"{displayNumber}. ");
+                        displayNumber++;
+                    }
+                    player.StatDisplay(index);
+                }
+                number++;
+            }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return filteredPlayers[playerChoice];
+        }
+        public Player PenalizedOptions(Player player, List<Player> players)
+        {
+            int number = 0;
+            int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
+            int playerChoice = 0;
+
+            foreach (Player index in players)
+            {
+                if (players[number].PenaltyTime > 0)
+                {
+                    filteredPlayers.Add(players[number]);
+
+                    if (displayNumber < 10)
+                    {
+                        Console.Write($" {displayNumber}. ");
+                        displayNumber++;
+                    }
+                    else
+                    {
+                        Console.Write($"{displayNumber}. ");
+                        displayNumber++;
+                    }
+                    player.StatDisplay(index);
+                }
+                number++;
+            }
+            if (filteredPlayers.Count == 0)
+            {
+                Console.WriteLine("No players in penalty box.");
+                filteredPlayers.Add(new Player());
+            }
+            else
+            {
+                playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            }
+            return filteredPlayers[playerChoice];
+        }
+        public Player FighterOptions(Player player, List<Player> players)
+        {
+            int number = 0;
+            int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
+
+            foreach (Player index in players)
+            {
+                filteredPlayers.Add(players[number]);
+
+                if (displayNumber < 10)
+                {
+                    Console.Write($" {displayNumber}. ");
+                    displayNumber++;
+                }
+                else
+                {
+                    Console.Write($"{displayNumber}. ");
+                    displayNumber++;
+                }
+                player.StatDisplay(index);
+                number++;
+            }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return filteredPlayers[playerChoice];
         }
     }
 }
