@@ -67,7 +67,15 @@ namespace Choose_Your_Class
         }
         public void StatDisplay(Player player)
         {
-            Console.WriteLine($"{player.Position} {player.Number} {player.Name}");
+            if (player.PenaltyTime > 0)
+            {
+                Console.WriteLine($"{player.Position} {player.Number} {player.Name} ***This player is currently in the box, {player.PenaltyTime} minutes left on the penalty.");
+            }
+            else
+            {
+                Console.WriteLine($"{player.Position} {player.Number} {player.Name}");
+            }
         }
+        
     }
 }

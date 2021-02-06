@@ -10,13 +10,15 @@ namespace Choose_Your_Class
             Player player = new Player();
             List<Player> blueJacketsRoster = new List<Player>();
             player.BlueJacketsRoster(blueJacketsRoster);
+            PlayOutcome playOutcome = new PlayOutcome();
             
             bool refreshMenu = true;
+            blueJacketsRoster[15].PenaltyTime = 4;
 
             while (refreshMenu)
             {
                 Console.Clear();
-                Console.WriteLine("IT'S HOCKEY TIME IN AMERICA!!!!!\nChoose your options:");
+                Console.WriteLine("IT'S HOCKEY TIME IN AMERICA!!!!!\nPlay hockey with the Columbus Blue Jackets!\nChoose your options:");
                 Console.WriteLine(" 1. Shoot at the goal");
                 Console.WriteLine(" 2. Defend a shot");
                 Console.WriteLine(" 3. Start a fight");
@@ -29,13 +31,16 @@ namespace Choose_Your_Class
                     case "1":
                         Console.Clear();
                         Console.WriteLine("Choose your player to take a shot!");
-                        ShooterOptions(player, blueJacketsRoster);
+                        Player shootingPlayer = ShooterOptions(player, blueJacketsRoster);
+                        Console.WriteLine($"{shootingPlayer.Name} takes the puck down the ice!");
                         Console.ReadLine();
+                        playOutcome.ShotOptions(shootingPlayer);
                         break;
                     case "2":
                         Console.Clear();
                         Console.WriteLine("Choose which goalie shall defend the net!");
-                        GoalieOptions(player, blueJacketsRoster);
+                        Player goaliePlayer = GoalieOptions(player, blueJacketsRoster);
+                        Console.WriteLine(goaliePlayer.Name);
                         Console.ReadLine();
                         break;
                     case "5":
@@ -45,10 +50,14 @@ namespace Choose_Your_Class
                         Console.Clear();
                         break;
                 }
+                foreach (Player playerPenalty in blueJacketsRoster)
+                {
+                    playerPenalty.PenaltyTime--;
+                }
             }
             
         }
-        public static void ShooterOptions(Player player, List<Player> players)
+        public static Player ShooterOptions(Player player, List<Player> players)
         {
             int number = 0;
             int displayNumber = 1;
@@ -63,17 +72,19 @@ namespace Choose_Your_Class
                         Console.Write($" {displayNumber}. ");
                         displayNumber++;
                     }
-                    else 
+                    else
                     {
                         Console.Write($"{displayNumber}. ");
                         displayNumber++;
                     }
-                player.StatDisplay(index);
+                    player.StatDisplay(index);
                 }
                 number++;
             }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) + 2;
+            return players[playerChoice];
         }
-        public static void GoalieOptions(Player player, List<Player> players)
+        public static Player GoalieOptions(Player player, List<Player> players)
         {
             int number = 0;
             int displayNumber = 1;
@@ -97,6 +108,8 @@ namespace Choose_Your_Class
                 }
                 number++;
             }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return players[playerChoice];
         }
     }
 }
