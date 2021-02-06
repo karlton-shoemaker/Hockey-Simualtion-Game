@@ -64,16 +64,8 @@ namespace Choose_Your_Class
 
         public void TeamStatDisplay(OtherTeamPlayer otherTeamPlayer)
         {
-            if (otherTeamPlayer.PenaltyTime > 0)
-            {
-                Console.WriteLine($"{otherTeamPlayer.Team}");
-                Console.WriteLine($"{otherTeamPlayer.Position} {otherTeamPlayer.Number} {otherTeamPlayer.Name} ***This player is currently in the box, {otherTeamPlayer.PenaltyTime} minutes left on the penalty.");
-            }
-            else
-            {
-                Console.WriteLine($"{otherTeamPlayer.Team}");
+                //Console.WriteLine($"{otherTeamPlayer.Team}");
                 Console.WriteLine($"{otherTeamPlayer.Position} {otherTeamPlayer.Number} {otherTeamPlayer.Name}");
-            }
         }
 
         public List<OtherTeamPlayer> PlayersFromOtherTeams(List<OtherTeamPlayer> players)

@@ -112,9 +112,50 @@ namespace Choose_Your_Class
                 }
             }
         }
-        public void FightOptions(Player player)
+        public void FightOutcome(Player player, OtherTeamPlayer otherTeamPlayer)
         {
+            List<string> midFightBanter = new List<string>
+            {
+                "It's on!!!",
+                "The fists are flying!",
+                "He's getting some help from his teammates!",
+                "They're holding him back!",
+                "The refs are gonna let them go for a bit!",
+                "The crowd is on their feet!"
+            };
+            List<string> victoryBanter = new List<string>
+            {
+                $"{player.Name} gets the better of it! He's off to the box with a smile on his face.",
+                $"A decisive victory for {player.Name}!"
+            };
+            List<string> defeatBanter = new List<string>
+            {
+                $"Ouch! {otherTeamPlayer.Name} knocks {player.Name} down to the ice!",
+                "The Jackets did not get the better of this fight..."
+            };
 
+            Random random = new Random();
+            int randomMidFight = random.Next(5);
+            int randomVictory = random.Next(1);
+            int randomDefeat = random.Next(1);
+
+            Console.WriteLine("The gloves are off!");
+            Console.ReadLine();
+            Console.WriteLine(midFightBanter[randomMidFight]);
+            Console.ReadLine();
+            if (player.FightStamina >= otherTeamPlayer.FightStamina)
+            {
+                Console.WriteLine(victoryBanter[randomVictory]);
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine(defeatBanter[randomDefeat]);
+                Console.ReadLine();
+            }
+
+            player.FightStamina -= 31;
+            player.PenaltyTime += 6;
         }
         public Player ShooterOptions(Player player, List<Player> players)
         {
@@ -220,8 +261,35 @@ namespace Choose_Your_Class
 
             foreach (Player index in players)
             {
-                filteredPlayers.Add(players[number]);
+                if (players[number].FightStamina > 30)
+                {
+                    filteredPlayers.Add(players[number]);
 
+                    if (displayNumber < 10)
+                    {
+                        Console.Write($" {displayNumber}. ");
+                        displayNumber++;
+                    }
+                    else
+                    {
+                        Console.Write($"{displayNumber}. ");
+                        displayNumber++;
+                    }
+                    player.StatDisplay(index);
+                }
+                number++;
+            }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return filteredPlayers[playerChoice];
+        }
+        public OtherTeamPlayer OpponentFighterOptions(OtherTeamPlayer otherTeamPlayer, List<OtherTeamPlayer> otherTeamPlayers)
+        {
+            int number = 0;
+            int displayNumber = 1;
+
+            foreach (OtherTeamPlayer index in otherTeamPlayers)
+            {
+                Console.WriteLine($"  {otherTeamPlayers[number].Team}");
                 if (displayNumber < 10)
                 {
                     Console.Write($" {displayNumber}. ");
@@ -232,11 +300,12 @@ namespace Choose_Your_Class
                     Console.Write($"{displayNumber}. ");
                     displayNumber++;
                 }
-                player.StatDisplay(index);
+                otherTeamPlayer.TeamStatDisplay(index);
                 number++;
             }
             int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
-            return filteredPlayers[playerChoice];
+            return otherTeamPlayers[playerChoice];
         }
+
     }
 }

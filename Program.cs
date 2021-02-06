@@ -92,7 +92,10 @@ namespace Choose_Your_Class
                             else
                             {
                                 eligiblePlayer = false;
-                                
+                                Console.Clear();
+                                Console.WriteLine("Choose which player to fight:");
+                                OtherTeamPlayer playerToFight = menuOptions.OpponentFighterOptions(otherTeamPlayer, playersToFight);
+                                menuOptions.FightOutcome(fightingPlayer, playerToFight);
                             }
                         }
                         break;
