@@ -11,6 +11,7 @@ namespace Choose_Your_Class
             List<Player> blueJacketsRoster = new List<Player>();
             player.BlueJacketsRoster(blueJacketsRoster);
             PlayOutcome playOutcome = new PlayOutcome();
+            player.FightStaminaGeneration(blueJacketsRoster);
             
             bool refreshMenu = true;
             blueJacketsRoster[15].PenaltyTime = 4;
@@ -20,7 +21,7 @@ namespace Choose_Your_Class
             while (refreshMenu)
             {
                 Console.Clear();
-                Console.WriteLine("IT'S HOCKEY TIME IN AMERICA!!!!!\nPlay hockey with the Columbus Blue Jackets!\nChoose your options:");
+                Console.WriteLine("IT'S HOCKEY TIME IN AMERICA!!!!!\nPlay hockey with the Columbus Blue Jackets!\n\nChoose your options:");
                 Console.WriteLine(" 1. Shoot at the goal");
                 Console.WriteLine(" 2. Defend a shot");
                 Console.WriteLine(" 3. Start a fight");
@@ -45,6 +46,10 @@ namespace Choose_Your_Class
                         Console.WriteLine($"The offense is coming down the ice toward {defensePlayer.Name}.");
                         Console.ReadLine();
                         playOutcome.DefenseOptions(defensePlayer);
+                        break;
+                    case "3":
+                        
+                        Console.ReadLine();
                         break;
                     case "4":
                         Console.Clear();

@@ -105,6 +105,14 @@ namespace Choose_Your_Class
                 Console.WriteLine($"{player.Position} {player.Number} {player.Name}");
             }
         }
-        
+        public List<Player> FightStaminaGeneration(List<Player> players)
+        {
+            Random random = new Random();
+            foreach (Player player in players)
+            {
+                player.FightStamina = random.Next(99) + 1;
+            }
+            return players;
+        }
     }
 }
