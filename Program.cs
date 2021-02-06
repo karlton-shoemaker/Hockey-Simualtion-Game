@@ -20,9 +20,6 @@ namespace Choose_Your_Class
             MenuOptions menuOptions = new MenuOptions();
             
             bool refreshMenu = true;
-            //blueJacketsRoster[15].PenaltyTime = 4;
-            //blueJacketsRoster[5].PenaltyTime = 5;
-            //blueJacketsRoster[25].PenaltyTime = 2;
 
             while (refreshMenu)
             {
@@ -34,12 +31,12 @@ namespace Choose_Your_Class
                 Console.WriteLine(" 4. Serve your time in the penalty box");
                 Console.WriteLine(" 5. Quit");
                 string userChoice = Console.ReadLine();
-                bool eligiblePlayer = true;
+                bool ineligiblePlayer = true;
 
                 switch (userChoice)
                 {
                     case "1":
-                        while (eligiblePlayer)
+                        while (ineligiblePlayer)
                         {
                             Console.Clear();
                             Console.WriteLine("Choose your player to take a shot!");
@@ -51,7 +48,7 @@ namespace Choose_Your_Class
                             }
                             else
                             {
-                                eligiblePlayer = false;
+                                ineligiblePlayer = false;
                                 Console.WriteLine($"{shootingPlayer.Name} takes the puck down the ice!");
                                 Console.ReadLine();
                                 menuOptions.ShotOptions(shootingPlayer);
@@ -59,7 +56,7 @@ namespace Choose_Your_Class
                         }
                         break;
                     case "2":
-                        while (eligiblePlayer)
+                        while (ineligiblePlayer)
                         {
                             Console.Clear();
                             Console.WriteLine("Choose which defenseman to make a play or goalie to defend the net!");
@@ -71,7 +68,7 @@ namespace Choose_Your_Class
                             }
                             else
                             {
-                                eligiblePlayer = false;
+                                ineligiblePlayer = false;
                                 Console.WriteLine($"The offense is coming down the ice toward {defensePlayer.Name}.");
                                 Console.ReadLine();
                                 menuOptions.DefenseOptions(defensePlayer);
@@ -79,7 +76,7 @@ namespace Choose_Your_Class
                         }
                         break;
                     case "3":
-                        while (eligiblePlayer)
+                        while (ineligiblePlayer)
                         {
                             Console.Clear();
                             Console.WriteLine("Choose your fighter.");
@@ -91,7 +88,7 @@ namespace Choose_Your_Class
                             }
                             else
                             {
-                                eligiblePlayer = false;
+                                ineligiblePlayer = false;
                                 Console.Clear();
                                 Console.WriteLine("Choose which player to fight:");
                                 OtherTeamPlayer playerToFight = menuOptions.OpponentFighterOptions(otherTeamPlayer, playersToFight);

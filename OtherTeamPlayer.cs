@@ -64,8 +64,7 @@ namespace Choose_Your_Class
 
         public void TeamStatDisplay(OtherTeamPlayer otherTeamPlayer)
         {
-                //Console.WriteLine($"{otherTeamPlayer.Team}");
-                Console.WriteLine($"{otherTeamPlayer.Position} {otherTeamPlayer.Number} {otherTeamPlayer.Name}");
+            Console.WriteLine($"{otherTeamPlayer.Position} {otherTeamPlayer.Number} {otherTeamPlayer.Name}");
         }
 
         public List<OtherTeamPlayer> PlayersFromOtherTeams(List<OtherTeamPlayer> players)

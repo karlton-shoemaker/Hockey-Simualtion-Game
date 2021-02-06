@@ -289,7 +289,14 @@ namespace Choose_Your_Class
 
             foreach (OtherTeamPlayer index in otherTeamPlayers)
             {
-                Console.WriteLine($"  {otherTeamPlayers[number].Team}");
+                if (number == 0)
+                {
+                    Console.WriteLine($"  {otherTeamPlayers[number].Team}");
+                }
+                else if (otherTeamPlayers[number].Team != otherTeamPlayers[number - 1].Team)
+                {
+                    Console.WriteLine($"  {otherTeamPlayers[number].Team}");
+                }
                 if (displayNumber < 10)
                 {
                     Console.Write($" {displayNumber}. ");
