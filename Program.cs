@@ -10,13 +10,19 @@ namespace Choose_Your_Class
             Player player = new Player();
             List<Player> blueJacketsRoster = new List<Player>();
             player.BlueJacketsRoster(blueJacketsRoster);
-            PlayOutcome playOutcome = new PlayOutcome();
             player.FightStaminaGeneration(blueJacketsRoster);
+
+            OtherTeamPlayer otherTeamPlayer = new OtherTeamPlayer();
+            List<OtherTeamPlayer> playersToFight = new List<OtherTeamPlayer>();
+            otherTeamPlayer.PlayersFromOtherTeams(playersToFight);
+            otherTeamPlayer.FightStaminaGeneration(playersToFight);
+
+            PlayOutcome playOutcome = new PlayOutcome();
             
             bool refreshMenu = true;
             blueJacketsRoster[15].PenaltyTime = 4;
             blueJacketsRoster[5].PenaltyTime = 5;
-            blueJacketsRoster[7].PenaltyTime = 2;
+            blueJacketsRoster[25].PenaltyTime = 2;
 
             while (refreshMenu)
             {
@@ -28,24 +34,49 @@ namespace Choose_Your_Class
                 Console.WriteLine(" 4. Serve your time in the penalty box");
                 Console.WriteLine(" 5. Quit");
                 string userChoice = Console.ReadLine();
+                bool eligiblePlayer = true;
 
                 switch (userChoice)
                 {
                     case "1":
-                        Console.Clear();
-                        Console.WriteLine("Choose your player to take a shot!");
-                        Player shootingPlayer = ShooterOptions(player, blueJacketsRoster);
-                        Console.WriteLine($"{shootingPlayer.Name} takes the puck down the ice!");
-                        Console.ReadLine();
-                        playOutcome.ShotOptions(shootingPlayer);
+                        while (eligiblePlayer)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Choose your player to take a shot!");
+                            Player shootingPlayer = ShooterOptions(player, blueJacketsRoster);
+                            if (shootingPlayer.PenaltyTime > 0)
+                            {
+                                Console.WriteLine("You can't pick him! He's in the penalty box!");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                eligiblePlayer = false;
+                                Console.WriteLine($"{shootingPlayer.Name} takes the puck down the ice!");
+                                Console.ReadLine();
+                                playOutcome.ShotOptions(shootingPlayer);
+                            }
+                        }
                         break;
                     case "2":
-                        Console.Clear();
-                        Console.WriteLine("Choose which defenseman to make a play or goalie to defend the net!");
-                        Player defensePlayer = DefenseOptions(player, blueJacketsRoster);
-                        Console.WriteLine($"The offense is coming down the ice toward {defensePlayer.Name}.");
-                        Console.ReadLine();
-                        playOutcome.DefenseOptions(defensePlayer);
+                        while (eligiblePlayer)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Choose which defenseman to make a play or goalie to defend the net!");
+                            Player defensePlayer = DefenseOptions(player, blueJacketsRoster);
+                            if (defensePlayer.PenaltyTime > 0)
+                            {
+                                Console.WriteLine("You can't pick him! He's in the penalty box!");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                eligiblePlayer = false;
+                                Console.WriteLine($"The offense is coming down the ice toward {defensePlayer.Name}.");
+                                Console.ReadLine();
+                                playOutcome.DefenseOptions(defensePlayer);
+                            }
+                        }
                         break;
                     case "3":
                         
@@ -103,6 +134,7 @@ namespace Choose_Your_Class
             int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
             return filteredPlayers[playerChoice];
         }
+        
         public static Player DefenseOptions(Player player, List<Player> players)
         {
             int number = 0;
