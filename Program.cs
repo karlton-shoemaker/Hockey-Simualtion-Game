@@ -14,6 +14,8 @@ namespace Choose_Your_Class
             
             bool refreshMenu = true;
             blueJacketsRoster[15].PenaltyTime = 4;
+            blueJacketsRoster[5].PenaltyTime = 5;
+            blueJacketsRoster[7].PenaltyTime = 2;
 
             while (refreshMenu)
             {
@@ -38,9 +40,18 @@ namespace Choose_Your_Class
                         break;
                     case "2":
                         Console.Clear();
-                        Console.WriteLine("Choose which goalie shall defend the net!");
-                        Player goaliePlayer = GoalieOptions(player, blueJacketsRoster);
-                        Console.WriteLine(goaliePlayer.Name);
+                        Console.WriteLine("Choose which defenseman to make a play or goalie to defend the net!");
+                        Player defensePlayer = DefenseOptions(player, blueJacketsRoster);
+                        Console.WriteLine($"The offense is coming down the ice toward {defensePlayer.Name}.");
+                        Console.ReadLine();
+                        playOutcome.DefenseOptions(defensePlayer);
+                        break;
+                    case "4":
+                        Console.Clear();
+                        Console.WriteLine("Choose a player whose penalty time you want to reduce.");
+                        Player penalizedPlayer = PenalizedOptions(player, blueJacketsRoster);
+                        Console.WriteLine($"\n{penalizedPlayer.Name}'s time in the box has been served.");
+                        penalizedPlayer.PenaltyTime = 0;
                         Console.ReadLine();
                         break;
                     case "5":
@@ -50,9 +61,10 @@ namespace Choose_Your_Class
                         Console.Clear();
                         break;
                 }
-                foreach (Player playerPenalty in blueJacketsRoster)
+                foreach (Player playerStats in blueJacketsRoster)
                 {
-                    playerPenalty.PenaltyTime--;
+                    playerStats.PenaltyTime--;
+                    playerStats.FightStamina++;
                 }
             }
             
@@ -61,11 +73,13 @@ namespace Choose_Your_Class
         {
             int number = 0;
             int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
 
             foreach (Player index in players)
             {
                 if (players[number].Position != "GK")
                 {
+                    filteredPlayers.Add(players[number]);
 
                     if (displayNumber < 10)
                     {
@@ -81,18 +95,20 @@ namespace Choose_Your_Class
                 }
                 number++;
             }
-            int playerChoice = Convert.ToInt32(Console.ReadLine()) + 2;
-            return players[playerChoice];
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return filteredPlayers[playerChoice];
         }
-        public static Player GoalieOptions(Player player, List<Player> players)
+        public static Player DefenseOptions(Player player, List<Player> players)
         {
             int number = 0;
             int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
 
             foreach (Player index in players)
             {
-                if (players[number].Position == "GK")
+                if (players[number].Position == "GK" || players[number].Position == "DE")
                 {
+                    filteredPlayers.Add(players[number]);
 
                     if (displayNumber < 10)
                     {
@@ -109,7 +125,36 @@ namespace Choose_Your_Class
                 number++;
             }
             int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
-            return players[playerChoice];
+            return filteredPlayers[playerChoice];
+        }
+        public static Player PenalizedOptions(Player player, List<Player> players)
+        {
+            int number = 0;
+            int displayNumber = 1;
+            List<Player> filteredPlayers = new List<Player>();
+
+            foreach (Player index in players)
+            {
+                if (players[number].PenaltyTime > 0)
+                {
+                    filteredPlayers.Add(players[number]);
+
+                    if (displayNumber < 10)
+                    {
+                        Console.Write($" {displayNumber}. ");
+                        displayNumber++;
+                    }
+                    else
+                    {
+                        Console.Write($"{displayNumber}. ");
+                        displayNumber++;
+                    }
+                    player.StatDisplay(index);
+                }
+                number++;
+            }
+            int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
+            return filteredPlayers[playerChoice];
         }
     }
 }
