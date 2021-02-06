@@ -6,17 +6,46 @@ namespace Choose_Your_Class
 {
     public class Player
     {
-        //private string name;
-        //private int number;
-        //private string position;
-        //public int fightStamina;
-        //public int penaltyTime;
+        public int fightStamina;
+        public int penaltyTime;
 
         public string Name { get; }
         public string Number { get; }
         public string Position { get; }
-        public int FightStamina;
-        public int PenaltyTime;
+        public int FightStamina
+        {
+            get
+            {
+                return fightStamina;
+            }
+            set
+            {
+                fightStamina = value;
+                if (fightStamina < 0)
+                {
+                    fightStamina = 0;
+                }
+                if (fightStamina > 100)
+                {
+                    fightStamina = 100;
+                }
+            }
+        }
+        public int PenaltyTime
+        {
+            get
+            {
+                return penaltyTime;
+            }
+            set
+            {
+                penaltyTime = value;
+                if (penaltyTime < 0)
+                {
+                    penaltyTime = 0;
+                }
+            }
+        }
 
         public Player()
         {
