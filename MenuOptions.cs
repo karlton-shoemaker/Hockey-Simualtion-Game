@@ -38,6 +38,7 @@ namespace Choose_Your_Class
                 Console.WriteLine();
                 Console.WriteLine(scoreBanter[randomBanter]);
                 Console.ReadLine();
+                player.Goals += 1;
                 Console.WriteLine("Shoot again? Y/N");
                 string shootAgain = Console.ReadLine().ToLower();
                 switch (shootAgain)
@@ -314,5 +315,46 @@ namespace Choose_Your_Class
             return otherTeamPlayers[playerChoice];
         }
 
+        public int CalculateScore(List<Player> players)
+        {
+            int score = 0;
+
+            foreach (Player player in players)
+            {
+                score += player.Goals;
+            }
+
+            return score;
+        }
+        public int CalculateTotalPenaltyTime(List<Player> players)
+        {
+            int penaltyMinutes = 0;
+
+            foreach (Player player in players)
+            {
+                penaltyMinutes += player.PenaltyTime;
+            }
+
+            return penaltyMinutes;
+        }
+        public void Instructions()
+        {
+            Console.Clear();
+            Console.WriteLine("Experience the thrill of playing in the National Hockey League!");
+            Console.WriteLine("Your team is the Columbus Blue Jackets");
+            Console.WriteLine("\nYou can:");
+            Console.WriteLine(" -Attempt a shot on goal with any player except a goalie");
+            Console.WriteLine(" -Attempt to prevent the other team from scoring with a goalie or defenseman");
+            Console.WriteLine(" -Pick a fight with one of several players from another NHL team");
+            Console.WriteLine(" -Serve your time in the penalty box");
+            Console.WriteLine("\nConditions for victory/defeat:");
+            Console.WriteLine("You will win the game if you can successfully score ten goals");
+            Console.WriteLine("However, you will lose if your team accrues too many penalty minutes");
+            Console.WriteLine("\nExplanation of penalty box:");
+            Console.WriteLine("As long as your player has time to serve in the penalty box, you will not be able to use him.");
+            Console.WriteLine("By choosing to serve time as your option, you will reduce one player's penalty minutes to zero immediately.");
+            Console.WriteLine("Otherwise, the penalty time will decrease by one minute each time you pick an action.");
+            Console.ReadLine();
+        }
     }
 }

@@ -24,12 +24,29 @@ namespace Choose_Your_Class
             while (refreshMenu)
             {
                 Console.Clear();
-                Console.WriteLine("IT'S HOCKEY TIME IN AMERICA!!!!!\nPlay hockey with the Columbus Blue Jackets!\n\nChoose your options:");
+                Console.WriteLine("IT'S HOCKEY TIME IN AMERICA!!!!!\nPlay hockey with the Columbus Blue Jackets!\n");
+                int currentScore = menuOptions.CalculateScore(blueJacketsRoster);
+                int currentPenaltyTime = menuOptions.CalculateTotalPenaltyTime(blueJacketsRoster);
+                Console.WriteLine($"Score: {currentScore}");
+                Console.WriteLine("Choose your option:");
                 Console.WriteLine(" 1. Shoot at the goal");
                 Console.WriteLine(" 2. Defend a shot");
                 Console.WriteLine(" 3. Start a fight");
                 Console.WriteLine(" 4. Serve your time in the penalty box");
-                Console.WriteLine(" 5. Quit");
+                Console.WriteLine(" 5. Instructions");
+                Console.WriteLine(" 6. Quit");
+
+                if (currentScore > 10)
+                {
+                    refreshMenu = false;
+                    Console.WriteLine("\nCongratulations!!! You win!!!");
+                }
+                if (currentPenaltyTime > 10)
+                {
+                    refreshMenu = false;
+                    Console.WriteLine("\nYou took too many penalties... You lose...");
+                }
+
                 string userChoice = Console.ReadLine();
                 bool ineligiblePlayer = true;
 
@@ -108,16 +125,22 @@ namespace Choose_Your_Class
                         Console.ReadLine();
                         break;
                     case "5":
+                        menuOptions.Instructions();
+                        break;
+                    case "6":
                         refreshMenu = false;
                         break;
                     default:
                         Console.Clear();
                         break;
                 }
-                foreach (Player playerStats in blueJacketsRoster)
+                if (userChoice != "5")
                 {
-                    playerStats.PenaltyTime--;
-                    playerStats.FightStamina++;
+                    foreach (Player playerStats in blueJacketsRoster)
+                    {
+                        playerStats.PenaltyTime--;
+                        playerStats.FightStamina++;
+                    }
                 }
             }
         }

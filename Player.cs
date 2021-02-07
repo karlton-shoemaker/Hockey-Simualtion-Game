@@ -8,6 +8,7 @@ namespace Choose_Your_Class
     {
         public int fightStamina;
         public int penaltyTime;
+        public int goals;
 
         public string Name { get; }
         public string Number { get; }
@@ -46,6 +47,7 @@ namespace Choose_Your_Class
                 }
             }
         }
+        public int Goals { get; set; }
 
         public Player()
         {
