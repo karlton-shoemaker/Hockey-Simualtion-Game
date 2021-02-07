@@ -9,24 +9,25 @@ namespace Choose_Your_Class
 
         public void ShotOptions(Player player)
         {
-            List<string> scoreBanter = new List<string>
-            {
-                $"It's behind the goalie! {player.Name} scores!!!!!",
-                $"{player.Name} sneaks it through, he's on the board!",
-                "Fire the cannon! Jackets score!",
-                $"What an amazing move!!! {player.Name} scores a humdinger!",
-                $"Count one more point for number {player.Number}!!"
-            };
-            List<string> missBanter = new List<string>
-            {
-                $"Oooooh, close one off the crossbar... {player.Name} can't believe it!",
-                $"Ricochet off the defender, the shot misses wide.",
-                "The shot rings off the pipe. No goal..."
-            };
-
             bool keepShooting = true;
             while (keepShooting)
             {
+                string displayName = player.NameRandomizer(player);
+                List<string> scoreBanter = new List<string>
+                {
+                    $"It's behind the goalie! {displayName} scores!!!!!",
+                    $"{displayName} sneaks it through, he's on the board!",
+                    "Fire the cannon! Jackets score!",
+                    $"What an amazing move!!! {displayName} scores a humdinger!",
+                    $"Count one more point for number {player.Number}!!"
+                };
+                List<string> missBanter = new List<string>
+                {
+                    $"Oooooh, close one off the crossbar... {displayName} can't believe it!",
+                    $"Ricochet off the defender, the shot misses wide.",
+                    "The shot rings off the pipe. No goal..."
+                };
+
                 Random random = new Random();
                 int randomScoreBanter = random.Next(4);
                 int randomMissBanter = random.Next(2);
@@ -76,21 +77,22 @@ namespace Choose_Your_Class
         }
         public void DefenseOptions(Player player)
         {
-            List<string> defenseBanter = new List<string>
-            {
-                "Kick save and a beauty!",
-                $"The puck glances off {player.Name}'s skate!",
-                $"The puck gets through the defense. {player.Name} can't believe it.",
-                $"The shot goes off {player.Name}'s shoulder. That's gotta hurt!",
-                $"{player.Name} gets his stick on it!",
-                $"Shot deflects off {player.Name} and rings off the crossbar! That was close!",
-                "That shot could not be stopped. Goal against the Blue Jackets.",
-                $"The puck glances off {player.Name}'s glove. The defense clears the zone."
-            };
-
             bool keepDefending = true;
             while (keepDefending)
             {
+                string displayName = player.NameRandomizer(player);
+                List<string> defenseBanter = new List<string>
+                {
+                    "Kick save and a beauty!",
+                    $"The puck glances off {displayName}'s skate!",
+                    $"The puck gets through the defense. {displayName} can't believe it.",
+                    $"The shot goes off {displayName}'s shoulder. That's gotta hurt!",
+                    $"{displayName} gets his stick on it!",
+                    $"Shot deflects off {displayName} and rings off the crossbar! That was close!",
+                    "That shot could not be stopped. Goal against the Blue Jackets.",
+                    $"The puck glances off {displayName}'s glove. The defense clears the zone."
+                };
+
                 Random random = new Random();
                 int randomBanter = random.Next(7);
                 if (player.Position == "DE")
@@ -138,6 +140,7 @@ namespace Choose_Your_Class
         }
         public void FightOutcome(Player player, OtherTeamPlayer otherTeamPlayer)
         {
+            string displayName = player.NameRandomizer(player);
             List<string> midFightBanter = new List<string>
             {
                 "It's on!!!",
@@ -149,12 +152,12 @@ namespace Choose_Your_Class
             };
             List<string> victoryBanter = new List<string>
             {
-                $"{player.Name} gets the better of it! He's off to the box with a smile on his face.",
-                $"A decisive victory for {player.Name}!"
+                $"{displayName} gets the better of it! He's off to the box with a smile on his face.",
+                $"A decisive victory for {displayName}!"
             };
             List<string> defeatBanter = new List<string>
             {
-                $"Ouch! {otherTeamPlayer.Name} knocks {player.Name} down to the ice!",
+                $"Ouch! {otherTeamPlayer.Name} knocks {displayName} down to the ice!",
                 "The Jackets did not get the better of this fight..."
             };
 

@@ -96,7 +96,7 @@ namespace Choose_Your_Class
                         while (ineligiblePlayer)
                         {
                             Console.Clear();
-                            Console.WriteLine("Choose your fighter.");
+                            Console.WriteLine("Choose your fighter:");
                             Player fightingPlayer = menuOptions.FighterOptions(player, blueJacketsRoster);
                             if (fightingPlayer.PenaltyTime > 0)
                             {
@@ -115,7 +115,7 @@ namespace Choose_Your_Class
                         break;
                     case "4":
                         Console.Clear();
-                        Console.WriteLine("Choose a player whose penalty time you want to reduce.");
+                        Console.WriteLine("Choose a player whose penalty time you want to reduce:");
                         Player penalizedPlayer = menuOptions.PenalizedOptions(player, blueJacketsRoster);
                         if (penalizedPlayer.Name != null)
                         {

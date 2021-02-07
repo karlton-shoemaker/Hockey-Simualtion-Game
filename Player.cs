@@ -135,17 +135,18 @@ namespace Choose_Your_Class
         }
         public void PenaltyType(Player player)
         {
+            string displayName = player.NameRandomizer(player);
             List<string> offensivePenalties = new List<string>
             {
-                $"{player.Name} has interfered with the defender. He's going to the box to think about what he did.",
-                $"{player.Name} can't believe it! He gets called for a high stick...",
-                $"{player.Name} has been called for holding. I guess that's how he got so open."
+                $"{displayName} has interfered with the defender. He's going to the box to think about what he did.",
+                $"{displayName} can't believe it! He gets called for a high stick...",
+                $"{displayName} has been called for holding. I guess that's how he got so open."
             };
             List<string> defensivePenalties = new List<string>
             {
-                $"Oooh, looks like {player.Name} got called for tripping! He's off to the penalty box.",
+                $"Oooh, looks like {displayName} got called for tripping! He's off to the penalty box.",
                 "He was a little aggresive on the defense and going to get two minutes for cross-checking.",
-                $"The refs have called {player.Name} for tripping..."
+                $"The refs have called {displayName} for tripping..."
             };
             Random random = new Random();
             int penaltyType = random.Next(2);
@@ -164,9 +165,30 @@ namespace Choose_Your_Class
             }
             else
             {
-                Console.WriteLine($"Ouch a rare penalty on the goalie, {player.Name} can't believe it.");
+                Console.WriteLine($"Ouch a rare penalty on the goalie, {displayName} can't believe it.");
                 Console.ReadLine();
                 player.PenaltyTime += 3;
+            }
+        }
+        public string NameRandomizer(Player player)
+        {
+            string[] nameSplit = player.Name.Split(' ');
+            Random random = new Random();
+            int nameOdds = random.Next(2);
+            if (nameOdds == 1)
+            {
+                if (nameSplit[1] == "Del")
+                {
+                    return "Del Zotto";
+                }
+                else
+                {
+                    return nameSplit[1];
+                }
+            }
+            else
+            {
+                return player.Name;
             }
         }
     }
