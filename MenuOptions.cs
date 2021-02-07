@@ -14,18 +14,23 @@ namespace Choose_Your_Class
                 $"It's behind the goalie! {player.Name} scores!!!!!",
                 $"{player.Name} sneaks it through, he's on the board!",
                 "Fire the cannon! Jackets score!",
-                $"Oooooh, close one off the crossbar... {player.Name} can't believe it!",
-                $"Ricochet off the defender, the shot misses wide.",
-                "The shot rings off the pipe. No goal...",
                 $"What an amazing move!!! {player.Name} scores a humdinger!",
                 $"Count one more point for number {player.Number}!!"
+            };
+            List<string> missBanter = new List<string>
+            {
+                $"Oooooh, close one off the crossbar... {player.Name} can't believe it!",
+                $"Ricochet off the defender, the shot misses wide.",
+                "The shot rings off the pipe. No goal..."
             };
 
             bool keepShooting = true;
             while (keepShooting)
             {
                 Random random = new Random();
-                int randomBanter = random.Next(7);
+                int randomScoreBanter = random.Next(4);
+                int randomMissBanter = random.Next(2);
+                int randomResult = random.Next(99);
                 Console.Clear();
                 Console.WriteLine("Where do you shoot?");
                 Console.WriteLine(" 1. Top shelf");
@@ -35,10 +40,23 @@ namespace Choose_Your_Class
                 Console.WriteLine(" 5. Five-hole");
 
                 Console.ReadLine();
+                keepShooting = player.RandomPenaltyGenerator(player);
+                if (keepShooting == false)
+                {
+                    break;
+                }
                 Console.WriteLine();
-                Console.WriteLine(scoreBanter[randomBanter]);
-                Console.ReadLine();
-                player.Goals += 1;
+                if (randomResult > 40)
+                {
+                    Console.WriteLine(scoreBanter[randomScoreBanter]);
+                    Console.ReadLine();
+                    player.Goals += 1;
+                }
+                else
+                {
+                    Console.WriteLine(missBanter[randomMissBanter]);
+                    Console.ReadLine();
+                }
                 Console.WriteLine("Shoot again? Y/N");
                 string shootAgain = Console.ReadLine().ToLower();
                 switch (shootAgain)
@@ -314,7 +332,6 @@ namespace Choose_Your_Class
             int playerChoice = Convert.ToInt32(Console.ReadLine()) - 1;
             return otherTeamPlayers[playerChoice];
         }
-
         public int CalculateScore(List<Player> players)
         {
             int score = 0;

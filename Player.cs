@@ -116,5 +116,24 @@ namespace Choose_Your_Class
             }
             return players;
         }
+        public bool RandomPenaltyGenerator(Player player)
+        {
+            bool refreshCondition;
+            Random random = new Random();
+            int penaltyChance = random.Next(99);
+
+            if (penaltyChance < 19)
+            {
+                refreshCondition = false;
+                Console.WriteLine($"Oooh, looks like {player.Name} got called for tripping! He's off to the penalty box.");
+                Console.ReadLine();
+                player.PenaltyTime += 3;
+            }
+            else
+            {
+                refreshCondition = true;
+            }
+            return refreshCondition;
+        }
     }
 }
