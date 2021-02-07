@@ -125,15 +125,49 @@ namespace Choose_Your_Class
             if (penaltyChance < 19)
             {
                 refreshCondition = false;
-                Console.WriteLine($"Oooh, looks like {player.Name} got called for tripping! He's off to the penalty box.");
-                Console.ReadLine();
-                player.PenaltyTime += 3;
+                player.PenaltyType(player);
             }
             else
             {
                 refreshCondition = true;
             }
             return refreshCondition;
+        }
+        public void PenaltyType(Player player)
+        {
+            List<string> offensivePenalties = new List<string>
+            {
+                $"{player.Name} has interfered with the defender. He's going to the box to think about what he did.",
+                $"{player.Name} can't believe it! He gets called for a high stick...",
+                $"{player.Name} has been called for holding. I guess that's how he got so open."
+            };
+            List<string> defensivePenalties = new List<string>
+            {
+                $"Oooh, looks like {player.Name} got called for tripping! He's off to the penalty box.",
+                "He was a little aggresive on the defense and going to get two minutes for cross-checking.",
+                $"The refs have called {player.Name} for tripping..."
+            };
+            Random random = new Random();
+            int penaltyType = random.Next(2);
+
+            if (player.Position == "LW" || player.Position == "C " || player.Position == "RW")
+            {
+                Console.WriteLine(offensivePenalties[penaltyType]);
+                Console.ReadLine();
+                player.PenaltyTime += 3;
+            }
+            else if (player.Position == "DE")
+            {
+                Console.WriteLine(defensivePenalties[penaltyType]);
+                Console.ReadLine();
+                player.PenaltyTime += 3;
+            }
+            else
+            {
+                Console.WriteLine($"Ouch a rare penalty on the goalie, {player.Name} can't believe it.");
+                Console.ReadLine();
+                player.PenaltyTime += 3;
+            }
         }
     }
 }

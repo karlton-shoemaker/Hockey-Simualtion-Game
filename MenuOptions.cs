@@ -112,6 +112,11 @@ namespace Choose_Your_Class
                 }
 
                 Console.ReadLine();
+                keepDefending = player.RandomPenaltyGenerator(player);
+                if (keepDefending == false)
+                {
+                    break;
+                }
                 Console.WriteLine();
                 Console.WriteLine(defenseBanter[randomBanter]);
                 Console.ReadLine();
