@@ -36,7 +36,7 @@ namespace Choose_Your_Class
                 Console.WriteLine(" 5. Instructions");
                 Console.WriteLine(" 6. Quit");
 
-                if (currentScore > 10)
+                if (currentScore >= 10)
                 {
                     refreshMenu = false;
                     Console.WriteLine("\nCongratulations!!! You win!!!");
