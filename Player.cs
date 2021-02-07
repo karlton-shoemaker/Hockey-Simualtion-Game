@@ -112,7 +112,7 @@ namespace Choose_Your_Class
             Random random = new Random();
             foreach (Player player in players)
             {
-                player.FightStamina = random.Next(99) + 1;
+                player.FightStamina = random.Next(100) + 1;
             }
             return players;
         }
@@ -120,9 +120,9 @@ namespace Choose_Your_Class
         {
             bool refreshCondition;
             Random random = new Random();
-            int penaltyChance = random.Next(99);
+            int penaltyChance = random.Next(100);
 
-            if (penaltyChance < 19)
+            if (penaltyChance < 20)
             {
                 refreshCondition = false;
                 player.PenaltyType(player);
@@ -149,7 +149,7 @@ namespace Choose_Your_Class
                 $"The refs have called {displayName} for tripping..."
             };
             Random random = new Random();
-            int penaltyType = random.Next(2);
+            int penaltyType = random.Next(3);
 
             if (player.Position == "LW" || player.Position == "C " || player.Position == "RW")
             {
@@ -174,7 +174,7 @@ namespace Choose_Your_Class
         {
             string[] nameSplit = player.Name.Split(' ');
             Random random = new Random();
-            int nameOdds = random.Next(2);
+            int nameOdds = random.Next(3);
             if (nameOdds == 1)
             {
                 if (nameSplit[1] == "Del")

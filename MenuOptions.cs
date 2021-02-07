@@ -29,9 +29,9 @@ namespace Choose_Your_Class
                 };
 
                 Random random = new Random();
-                int randomScoreBanter = random.Next(4);
-                int randomMissBanter = random.Next(2);
-                int randomResult = random.Next(99);
+                int randomScoreBanter = random.Next(5);
+                int randomMissBanter = random.Next(3);
+                int randomResult = random.Next(100);
                 Console.Clear();
                 Console.WriteLine("Where do you shoot?");
                 Console.WriteLine(" 1. Top shelf");
@@ -94,7 +94,7 @@ namespace Choose_Your_Class
                 };
 
                 Random random = new Random();
-                int randomBanter = random.Next(7);
+                int randomBanter = random.Next(8);
                 if (player.Position == "DE")
                 {
                     Console.Clear();
@@ -162,9 +162,9 @@ namespace Choose_Your_Class
             };
 
             Random random = new Random();
-            int randomMidFight = random.Next(5);
-            int randomVictory = random.Next(1);
-            int randomDefeat = random.Next(1);
+            int randomMidFight = random.Next(6);
+            int randomVictory = random.Next(2);
+            int randomDefeat = random.Next(2);
 
             Console.WriteLine("The gloves are off!");
             Console.ReadLine();
