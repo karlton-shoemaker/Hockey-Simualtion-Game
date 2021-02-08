@@ -38,13 +38,13 @@ namespace Choose_Your_Class
 
                 if (currentScore >= 10)
                 {
-                    refreshMenu = false;
                     Console.WriteLine("\nCongratulations!!! You win!!!");
+                    break;
                 }
                 if (currentPenaltyTime > 10)
                 {
-                    refreshMenu = false;
                     Console.WriteLine("\nYou took too many penalties... You lose...");
+                    break;
                 }
 
                 string userChoice = Console.ReadLine();
