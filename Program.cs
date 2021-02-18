@@ -134,7 +134,7 @@ namespace Choose_Your_Class
                         Console.Clear();
                         break;
                 }
-                if (userChoice != "5")
+                if (userChoice == "1" || userChoice == "2" || userChoice == "3" || userChoice == "4")
                 {
                     foreach (Player playerStats in blueJacketsRoster)
                     {
