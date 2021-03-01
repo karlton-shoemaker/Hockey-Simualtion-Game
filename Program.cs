@@ -33,8 +33,9 @@ namespace Choose_Your_Class
                 Console.WriteLine(" 2. Defend a shot");
                 Console.WriteLine(" 3. Start a fight");
                 Console.WriteLine(" 4. Serve your time in the penalty box");
-                Console.WriteLine(" 5. Instructions");
-                Console.WriteLine(" 6. Quit");
+                Console.WriteLine(" 5. Add a player");
+                Console.WriteLine(" 6. Instructions");
+                Console.WriteLine(" 7. Quit");
 
                 if (currentScore >= 10)
                 {
@@ -125,9 +126,24 @@ namespace Choose_Your_Class
                         Console.ReadLine();
                         break;
                     case "5":
-                        menuOptions.Instructions();
+                        Console.Clear();
+                        Console.WriteLine("Add a player. What's their name?");
+                        string newPlayerName = Console.ReadLine();
+                        Console.WriteLine("What position?");
+                        string newPlayerPosition = Console.ReadLine();
+                        Console.WriteLine("What's their number?");
+                        string newPlayerNumber = Console.ReadLine();
+                        blueJacketsRoster.Add(new Player(newPlayerName,newPlayerNumber,newPlayerPosition));
+                        int rosterCount = blueJacketsRoster.Count;
+                        Random random = new Random();
+                        blueJacketsRoster[rosterCount - 1].FightStamina = random.Next(100) + 1;
+                        Console.WriteLine($"Okay, {blueJacketsRoster[rosterCount - 1].Name} is ready to take to the ice.");
+                        Console.ReadLine();
                         break;
                     case "6":
+                        menuOptions.Instructions();
+                        break;
+                    case "7":
                         refreshMenu = false;
                         break;
                     default:

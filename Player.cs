@@ -10,9 +10,9 @@ namespace Choose_Your_Class
         public int penaltyTime;
         public int goals;
 
-        public string Name { get; }
-        public string Number { get; }
-        public string Position { get; }
+        public string Name { get; set; }
+        public string Number { get; set; }
+        public string Position { get; set; }
         public int FightStamina
         {
             get
