@@ -125,8 +125,11 @@ namespace Choose_Your_Class
                         break;
                     case "5":
                         Console.Clear();
-                        Console.WriteLine("Add a player. What's their name?");
-                        string newPlayerName = Console.ReadLine();
+                        Console.WriteLine("Add a player. What's their first name?");
+                        string newPlayerFirstName = Console.ReadLine();
+                        Console.WriteLine("What's their last name?");
+                        string newPlayerLastName = Console.ReadLine();
+                        string newPlayerName = newPlayerFirstName + " " + newPlayerLastName;
                         Console.WriteLine("What position?");
                         Console.WriteLine(" 1. Goalie (GK)");
                         Console.WriteLine(" 2. Defenseman (DE)");
@@ -166,7 +169,6 @@ namespace Choose_Your_Class
                             }
 
                         }
-
                         Console.WriteLine("What's their number?");
                         string newPlayerNumber = Console.ReadLine();
                         blueJacketsRoster.Add(new Player(newPlayerName,newPlayerNumber,newPlayerPosition));
