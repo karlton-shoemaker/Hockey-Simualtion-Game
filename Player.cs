@@ -166,13 +166,14 @@ namespace Choose_Your_Class
         public string NameRandomizer(Player player)
         {
             string[] nameSplit = player.Name.Split(' ');
+            int numberOfNames = nameSplit.Length;
             Random random = new Random();
             int nameOdds = random.Next(3);
             if (nameOdds == 1)
             {
-                if (nameSplit[1] == "Del")
+                if (numberOfNames > 2)
                 {
-                    return "Del Zotto";
+                    return nameSplit[1] + " " + nameSplit[2];
                 }
                 else
                 {
