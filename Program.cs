@@ -128,7 +128,45 @@ namespace Choose_Your_Class
                         Console.WriteLine("Add a player. What's their name?");
                         string newPlayerName = Console.ReadLine();
                         Console.WriteLine("What position?");
-                        string newPlayerPosition = Console.ReadLine();
+                        Console.WriteLine(" 1. Goalie (GK)");
+                        Console.WriteLine(" 2. Defenseman (DE)");
+                        Console.WriteLine(" 3. Center (C)");
+                        Console.WriteLine(" 4. Left Wing (LW)");
+                        Console.WriteLine(" 5. Right Wing (RW)");
+                        bool invalidPostition = true;
+                        string newPlayerPosition = null;
+                        while (invalidPostition)
+                        {
+                            newPlayerPosition = Console.ReadLine();
+                            switch (newPlayerPosition)
+                            {
+                                case "1":
+                                    newPlayerPosition = "GK";
+                                    invalidPostition = false;
+                                    break;
+                                case "2":
+                                    newPlayerPosition = "DE";
+                                    invalidPostition = false;
+                                    break;
+                                case "3":
+                                    newPlayerPosition = "C ";
+                                    invalidPostition = false;
+                                    break;
+                                case "4":
+                                    newPlayerPosition = "LW";
+                                    invalidPostition = false;
+                                    break;
+                                case "5":
+                                    newPlayerPosition = "RW";
+                                    invalidPostition = false;
+                                    break;
+                                default:
+                                    Console.WriteLine("Hey, that's not an option!");
+                                    break;
+                            }
+
+                        }
+
                         Console.WriteLine("What's their number?");
                         string newPlayerNumber = Console.ReadLine();
                         blueJacketsRoster.Add(new Player(newPlayerName,newPlayerNumber,newPlayerPosition));
