@@ -60,6 +60,8 @@ namespace Choose_Your_Class
             Number = number;
             Position = position;
             PenaltyTime = 0;
+            Random random = new Random();
+            FightStamina = random.Next(100) + 1;
         }
 
         public List<Player> BlueJacketsRoster(List<Player> players)
@@ -106,15 +108,6 @@ namespace Choose_Your_Class
             {
                 Console.WriteLine($"{player.Position} {player.Number} {player.Name}");
             }
-        }
-        public List<Player> FightStaminaGeneration(List<Player> players)
-        {
-            Random random = new Random();
-            foreach (Player player in players)
-            {
-                player.FightStamina = random.Next(100) + 1;
-            }
-            return players;
         }
         public bool RandomPenaltyGenerator(Player player)
         {

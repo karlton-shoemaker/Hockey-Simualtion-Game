@@ -10,12 +10,10 @@ namespace Choose_Your_Class
             Player player = new Player();
             List<Player> blueJacketsRoster = new List<Player>();
             player.BlueJacketsRoster(blueJacketsRoster);
-            player.FightStaminaGeneration(blueJacketsRoster);
 
             OtherTeamPlayer otherTeamPlayer = new OtherTeamPlayer();
             List<OtherTeamPlayer> playersToFight = new List<OtherTeamPlayer>();
             otherTeamPlayer.PlayersFromOtherTeams(playersToFight);
-            otherTeamPlayer.FightStaminaGeneration(playersToFight);
 
             MenuOptions menuOptions = new MenuOptions();
             
@@ -135,8 +133,6 @@ namespace Choose_Your_Class
                         string newPlayerNumber = Console.ReadLine();
                         blueJacketsRoster.Add(new Player(newPlayerName,newPlayerNumber,newPlayerPosition));
                         int rosterCount = blueJacketsRoster.Count;
-                        Random random = new Random();
-                        blueJacketsRoster[rosterCount - 1].FightStamina = random.Next(100) + 1;
                         Console.WriteLine($"Okay, {blueJacketsRoster[rosterCount - 1].Name} is ready to take to the ice.");
                         Console.ReadLine();
                         break;

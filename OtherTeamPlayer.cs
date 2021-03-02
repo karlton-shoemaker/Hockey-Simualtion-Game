@@ -60,6 +60,8 @@ namespace Choose_Your_Class
             Position = position;
             Team = team;
             PenaltyTime = 0;
+            Random random = new Random();
+            FightStamina = random.Next(100) + 1;
         }
 
         public void TeamStatDisplay(OtherTeamPlayer otherTeamPlayer)
@@ -79,16 +81,6 @@ namespace Choose_Your_Class
             players.Add(new OtherTeamPlayer("Jamie Benn", "14", "LW", "Dallas Stars"));
             players.Add(new OtherTeamPlayer("Tyler Seguin", "25", "LW", "Dallas Stars"));
 
-            return players;
-        }
-
-        public List<OtherTeamPlayer> FightStaminaGeneration(List<OtherTeamPlayer> players)
-        {
-            Random random = new Random();
-            foreach (OtherTeamPlayer player in players)
-            {
-                player.FightStamina = random.Next(99) + 1;
-            }
             return players;
         }
     }
